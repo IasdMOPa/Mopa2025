@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         igreja_central_medicilandia: {
             title: 'Igreja Central Medicilândia',
-            count: 2 // Exemplo: se você tem 4 fotos
+            count: 4 // Exemplo: se você tem 4 fotos
         }
     };
 
