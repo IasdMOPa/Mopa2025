@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------
     // 1. Dados dos Álbuns (Você precisa ajustar 'count' para o número real de fotos em cada álbum)
