@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const albumsConfig = {
         comunidade_sentir: { // Corresponde ao nome da pasta e data-album-id
             title: 'Comunidade Sentir',
-            count: 3 // Verifique quantas fotos você tem: comunidade_sentir_1.jpg, _2.jpg, _3.jpg
+            count: 34 // Verifique quantas fotos você tem: comunidade_sentir_1.jpg, _2.jpg, _3.jpg
         },
         igreja_celebracao: { // Corresponde ao nome da pasta e data-album-id
             title: 'Igreja Celebração',
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         igreja_medicilandia: { // Corresponde ao nome da pasta e data-album-id
             title: 'Igreja Central Medicilândia',
-            count: 2 // Verifique quantas fotos você tem
+            count: 6 // Verifique quantas fotos você tem
         },
         academia_iatai: { // Corresponde ao nome da pasta e data-album-id
             title: 'Academia IATAI',
