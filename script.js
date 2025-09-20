@@ -1,437 +1,153 @@
-/* Estilos Gerais e Mobile-First */
-:root {
-    --primary-color: #007bff; /* Azul, exemplo */
-    --secondary-color: #6c757d; /* Cinza, exemplo */
-    --text-color: #333;
-    --bg-light: #f8f9fa;
-    --bg-dark: #343a40;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // --------------------------------------------------------------------
+    // 1. Dados dos Álbuns (Você precisa ajustar 'count' para o número real de fotos em cada álbum)
+    // As fotos devem estar em './images/[album_id]_[numero].jpg'
+    // --------------------------------------------------------------------
+    const albumsConfig = {
+        comunidade_sentir_plus: {
+            title: 'Comunidade Sentir +',
+            count: 5 // Exemplo: se você tem comunidade_sentir_plus_1.jpg a comunidade_sentir_plus_5.jpg
+        },
+        igreja_celebracao_30_anos_mm: {
+            title: 'Igreja Celebração 30 anos MM',
+            count: 7 // Exemplo: se você tem 7 fotos
+        },
+        igreja_central_medicilandia: {
+            title: 'Igreja Central Medicilândia',
+            count: 4 // Exemplo: se você tem 4 fotos
+        }
+    };
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    // --------------------------------------------------------------------
+    // 2. Menu Hamburguer (Mobile)
+    // --------------------------------------------------------------------
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-light);
-}
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times'); // Muda para X ao abrir
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block; /* Remove espaço extra abaixo de imagens */
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
-
-ul {
-    list-style: none;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    font-family: inherit;
-}
-
-/* Header */
-.header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-
-.logo img {
-    height: 40px; /* Ajuste o tamanho do logo */
-}
-
-.menu-toggle {
-    font-size: 1.5rem;
-    color: var(--text-color);
-    display: block; /* Visível no mobile */
-}
-
-.main-nav {
-    display: none; /* Escondido no mobile por padrão */
-    position: absolute;
-    top: 60px; /* Altura do header */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    padding: 10px 0;
-    text-align: center;
-}
-
-.main-nav.active {
-    display: block; /* Mostra quando o menu-toggle é clicado */
-}
-
-.main-nav ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.main-nav ul li:last-child {
-    border-bottom: none;
-}
-
-.main-nav a {
-    color: var(--text-color);
-    font-weight: bold;
-    display: block;
-    padding: 5px 20px;
-}
-
-/* Hero Section */
-.hero-section {
-    background: url('./images/hero_bg.jpg') no-repeat center center/cover; /* Substitua sua imagem */
-    color: #fff;
-    text-align: center;
-    padding: 80px 20px;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hero-section::before { /* Overlay escuro para melhorar legibilidade */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.hero-section .container {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.hero-section p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-.btn-scroll-down {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn-scroll-down:hover {
-    background-color: #0056b3;
-}
-
-/* Albums Grid */
-.albums-grid {
-    padding: 40px 0;
-    display: grid;
-    grid-template-columns: 1fr; /* Uma coluna no mobile */
-    gap: 30px;
-}
-
-.albums-grid h2, .documents-section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    grid-column: 1 / -1; /* Ocupa toda a largura */
-}
-
-.album-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease;
-    display: flex; /* Para empurrar o botão para baixo */
-    flex-direction: column;
-}
-
-.album-card:hover {
-    transform: translateY(-5px);
-}
-
-.album-card img {
-    width: 100%;
-    height: 200px; /* Altura fixa para as capas */
-    object-fit: cover; /* Garante que a imagem cubra a área */
-    border-bottom: 1px solid #eee;
-}
-
-.album-card h3 {
-    font-size: 1.5rem;
-    margin: 15px 10px 5px;
-}
-
-.album-card p {
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-    margin: 0 10px 15px;
-    flex-grow: 1; /* Faz o parágrafo ocupar espaço disponível */
-}
-
-.album-card .btn-view-album {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 0 0 8px 8px; /* Cantos arredondados na parte inferior */
-    width: 100%;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    margin-top: auto; /* Empurra para baixo */
-}
-
-.album-card .btn-view-album:hover {
-    background-color: #0056b3;
-}
-
-/* Documents Section */
-.documents-section {
-    padding: 40px 0;
-}
-
-.document-list {
-    display: grid;
-    grid-template-columns: 1fr; /* Uma coluna no mobile */
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.document-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.document-card i {
-    font-size: 3rem;
-    color: #dc3545; /* Cor para ícone de PDF */
-    margin-bottom: 15px;
-}
-
-.document-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.document-card p {
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-.document-card .btn-download {
-    background-color: #dc3545; /* Cor para botão de PDF */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Ocupa a largura total do card */
-    max-width: 250px; /* Limita a largura */
-    display: inline-block; /* Para centralizar com margin auto */
-}
-
-.document-card .btn-download:hover {
-    background-color: #c82333;
-}
-
-/* Lightbox (Galeria) */
-.lightbox {
-    display: none; /* Escondido por padrão */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.lightbox-img {
-    max-width: 100%;
-    max-height: 70vh; /* Altura máxima da imagem */
-    object-fit: contain; /* Garante que a imagem se ajuste */
-    margin-bottom: 10px;
-}
-
-.lightbox-caption {
-    color: #fff;
-    font-size: 1rem;
-    text-align: center;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.7);
-    width: 100%;
-    max-width: 100%;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: #999;
-    text-decoration: none;
-}
-
-.prev-btn, .next-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 3rem;
-    color: #fff;
-    padding: 10px;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    z-index: 2001; /* Garante que os botões fiquem acima da imagem */
-}
-
-.prev-btn:hover, .next-btn:hover {
-    background-color: rgba(0,0,0,0.8);
-}
-
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
-
-/* Footer */
-.footer {
-    background-color: var(--bg-dark);
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px;
-}
-
-.footer p {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-}
-
-/* Desktop Styles (Media Query) */
-@media (min-width: 768px) {
-    .menu-toggle {
-        display: none; /* Esconde o botão de menu no desktop */
+        // Fechar menu ao clicar em um link (apenas no mobile)
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) { // Considerar "mobile" abaixo de 768px
+                    mainNav.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
     }
 
-    .main-nav {
-        position: static;
-        display: block !important; /* Sempre visível no desktop */
-        width: auto;
-        box-shadow: none;
-        background-color: transparent;
-        padding: 0;
+    // --------------------------------------------------------------------
+    // 3. Rolagem Suave para Âncoras
+    // --------------------------------------------------------------------
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // --------------------------------------------------------------------
+    // 4. Funcionalidade do Lightbox (Galeria de Fotos)
+    // --------------------------------------------------------------------
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.close-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    let currentAlbumPhotos = []; // Array de { src, caption }
+    let currentPhotoIndex = 0;
+
+    // Abrir Lightbox
+    document.querySelectorAll('.btn-view-album').forEach(button => {
+        button.addEventListener('click', () => {
+            const albumId = button.closest('.album-card').dataset.albumId;
+            const albumInfo = albumsConfig[albumId];
+
+            if (albumInfo) {
+                currentAlbumPhotos = [];
+                for (let i = 1; i <= albumInfo.count; i++) {
+                    currentAlbumPhotos.push({
+                        src: `./images/${albumId}_${i}.jpg`,
+                        caption: `${albumInfo.title} - Foto ${i}`
+                    });
+                }
+
+                if (currentAlbumPhotos.length > 0) {
+                    currentPhotoIndex = 0;
+                    showPhoto(currentPhotoIndex);
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+    });
+
+    // Mostrar uma foto específica no Lightbox
+    function showPhoto(index) {
+        if (currentAlbumPhotos && currentAlbumPhotos.length > 0) {
+            const photo = currentAlbumPhotos[index];
+            lightboxImg.src = photo.src;
+            lightboxImg.alt = photo.caption;
+            lightboxCaption.textContent = photo.caption;
+
+            prevBtn.style.display = (index === 0) ? 'none' : 'block';
+            nextBtn.style.display = (index === currentAlbumPhotos.length - 1) ? 'none' : 'block';
+        }
     }
 
-    .main-nav ul {
-        display: flex;
-    }
+    // Navegar para a próxima foto
+    nextBtn.addEventListener('click', () => {
+        if (currentPhotoIndex < currentAlbumPhotos.length - 1) {
+            currentPhotoIndex++;
+            showPhoto(currentPhotoIndex);
+        }
+    });
 
-    .main-nav ul li {
-        border-bottom: none;
-        margin-left: 20px;
-    }
+    // Navegar para a foto anterior
+    prevBtn.addEventListener('click', () => {
+        if (currentPhotoIndex > 0) {
+            currentPhotoIndex--;
+            showPhoto(currentPhotoIndex);
+        }
+    });
 
-    .main-nav a {
-        color: var(--text-color);
-        padding: 0;
-    }
+    // Fechar Lightbox
+    closeBtn.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
 
-    .main-nav a:hover {
-        color: var(--primary-color);
-    }
+    // Fechar Lightbox ao clicar fora da imagem
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
 
-    .header .container {
-        padding: 15px 0;
-    }
-
-    .hero-section {
-        padding: 120px 20px;
-    }
-
-    .hero-section h1 {
-        font-size: 3.5rem;
-    }
-
-    .hero-section p {
-        font-size: 1.3rem;
-    }
-
-    .albums-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 colunas para os 3 álbuns */
-    }
-
-    .document-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas para os 2 PDFs */
-    }
-}
+    // Fechar Lightbox com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
