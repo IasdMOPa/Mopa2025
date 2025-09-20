@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaques | [Nome da Empresa]</title>
+    <link rel="icon" href="./img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/logo_mopa.png" alt="Logo da Mopa">
+            </div>
+            <div class="header-social-links">
+                <a href="https://www.facebook.com/sua-pagina" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/seu-perfil" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/seu-canal" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.flickr.com/seu-perfil" target="_blank" aria-label="Flickr">
+                    <i class="fab fa-flickr"></i>
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#albums">Álbuns</a></li>
+                    <li><a href="#documents">Documentos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1>Destaques e Inovações: Uma Jornada Visual em [Nome da Empresa]</h1>
+                <p>É uma honra receber o Presidente e compartilhar os frutos de nosso trabalho e dedicação.</p>
+                <a href="#albums" class="btn-scroll-down">Ver Conteúdo <i class="fas fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <section id="albums" class="albums-grid container">
+            <h2>Nossos Álbuns de Fotos</h2>
+
+            <div class="album-card" data-album-id="comunidade_sentir">
+                <img src="./comunidade_sentir/comunidade_sentir_capa.jpg" alt="Capa Comunidade Sentir">
+                <h3>Comunidade Sentir</h3>
+                <p>Momentos de fé, união e solidariedade.</p>
+                <button class="btn-view-album">Ver Álbum</button>
+            </div>
+
+            <div class="album-card" data-album-id="igreja_celebracao">
+                <img src="./igreja_celebracao/igreja_celebracao_capa.jpg" alt="Capa Igreja Celebração">
+                <h3>Igreja Celebração</h3>
+                <p>Comemorando história e impacto.</p>
+                <button class="btn-view-album">Ver Álbum</button>
+            </div>
+
+            <div class="album-card" data-album-id="igreja_medicilandia">
+                <img src="./igreja_medicilandia/igreja_medicilandia_capa.jpg" alt="Capa Igreja Central Medicilândia">
+                <h3>Igreja Central Medicilândia</h3>
+                <p>Nossa comunidade em Medicilândia.</p>
+                <button class="btn-view-album">Ver Álbum</button>
+            </div>
+
+            <div class="album-card" data-album-id="academia_iatai">
+                <img src="./academia_iatai/academia_iatai_capa.jpg" alt="Capa Academia IATAI">
+                <h3>Academia IATAI</h3>
+                <p>Excelência em formação e desenvolvimento.</p>
+                <button class="btn-view-album">Ver Álbum</button>
+            </div>
+
+            <div class="album-card" data-album-id="conservatorio_iatai">
+                <img src="./conservatorio_iatai/conservatorio_iatai_capa.jpg" alt="Capa Conservatório Musical IATAI">
+                <h3>Conservatório Musical IATAI</h3>
+                <p>Cultivando talentos musicais.</p>
+                <button class="btn-view-album">Ver Álbum</button>
+            </div>
+        </section>
+
+        <section id="documents" class="documents-section container">
+            <h2>Documentos Importantes</h2>
+            <div class="document-list">
+                <div class="document-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Academia IATAI REV04.pdf</h3>
+                    <p>Detalhes sobre a Academia IATAI.</p>
+                    <a href="./pdfs/Academia IATAI REV04.pdf" target="_blank" class="btn-download">Visualizar/Baixar PDF</a>
+                </div>
+                <div class="document-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Conservatório Musical.pdf</h3>
+                    <p>Informações sobre o Conservatório Musical.</p>
+                    <a href="./pdfs/Conservatório Musical.pdf" target="_blank" class="btn-download">Visualizar/Baixar PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="lightbox" class="lightbox">
+            <div class="lightbox-content">
+                <span class="close-btn">&times;</span>
+                <img src="" alt="" class="lightbox-img">
+                <div class="lightbox-caption"></div>
+                <button class="prev-btn">&lt;</button>
+                <button class="next-btn">&gt;</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>&copy; 2023 [Nome da Empresa]. Todos os direitos reservados.</p>
+            <p>Endereço: Rua Exemplo, 123 - Cidade, Estado</p>
+            <p>Contato: (XX) XXXX-XXXX | email@empresa.com</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
