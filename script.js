@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const albumsConfig = {
         comunidade_sentir_plus: {
             title: 'Comunidade Sentir +',
-            count: 5 // Exemplo: se você tem comunidade_sentir_plus_1.jpg a comunidade_sentir_plus_5.jpg
+            count: 3 // Exemplo: se você tem comunidade_sentir_plus_1.jpg a comunidade_sentir_plus_5.jpg
         },
         igreja_celebracao_30_anos_mm: {
             title: 'Igreja Celebração 30 anos MM',
-            count: 7 // Exemplo: se você tem 7 fotos
+            count: 1 // Exemplo: se você tem 7 fotos
         },
         igreja_central_medicilandia: {
             title: 'Igreja Central Medicilândia',
-            count: 4 // Exemplo: se você tem 4 fotos
+            count: 2 // Exemplo: se você tem 4 fotos
         }
     };
 
